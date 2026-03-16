@@ -33,4 +33,19 @@ if uploaded_file is not None:
     st.write(f"{len(filtered)} images found")
 
     st.dataframe(filtered)
-    st.write("Ready to preview images from Dropbox in the next step.")
+
+if len(filtered) > 0:
+    st.subheader("Image Preview")
+
+    preview_rows = filtered.head(6)
+
+    for _, row in preview_rows.iterrows():
+        try:
+            path = row["path"]
+            metadata, res = dbx.files_download(path)
+            image_bytes = io.BytesIO(res.content)
+            st.image(image_bytes, caption=row["name"], width=250)
+        except Exception as e:
+            st.write(f"Could not load image: {row['name']}")
+
+st.write("Ready to preview images from Dropbox in the next step.")
