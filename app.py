@@ -35,15 +35,20 @@ if uploaded_file is not None:
     st.write(f"{len(filtered)} images found")
     st.dataframe(filtered)
 
-    if len(filtered) > 0:
+        if len(filtered) > 0:
         st.subheader("Image Preview")
         preview_rows = filtered.head(12)
 
-        for _, row in preview_rows.iterrows():
+        cols = st.columns(3)
+
+        for i, (_, row) in enumerate(preview_rows.iterrows()):
             try:
                 path = row["path"]
                 _, res = dbx.files_download(path)
                 image_bytes = io.BytesIO(res.content)
-                st.image(image_bytes, caption=row["name"], width=250)
+
+                with cols[i % 3]:
+                    st.image(image_bytes, caption=row["name"], use_container_width=True)
             except Exception as e:
-                st.write(f"Could not load image: {row['name']} | Error: {e}")
+                with cols[i % 3]:
+                    st.write(f"Could not load image: {row['name']}")
