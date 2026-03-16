@@ -32,3 +32,4 @@ if uploaded_file is not None:
     st.write(f"{len(filtered)} images found")
 
     st.dataframe(filtered)
+    st.write("Ready to preview images from Dropbox in the next step.")
