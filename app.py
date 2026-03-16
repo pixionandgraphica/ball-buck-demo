@@ -45,5 +45,5 @@ if uploaded_file is not None:
                 _, res = dbx.files_download(path)
                 image_bytes = io.BytesIO(res.content)
                 st.image(image_bytes, caption=row["name"], width=250)
-            except Exception:
-                st.write(f"Could not load image: {row['name']}")
+            except Exception as e:
+                st.write(f"Could not load image: {row['name']} | Error: {e}")
