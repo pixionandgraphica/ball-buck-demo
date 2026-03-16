@@ -17,9 +17,12 @@ if uploaded_file is not None:
     search = st.text_input("Search images by keyword")
 
     if search:
-        filtered = df[df.apply(lambda row: row.astype(str).str.contains(search, case=False).any(), axis=1)]
-    else:
-        filtered = df
+    keywords = search.split()
+    filtered = df
+    for word in keywords:
+        filtered = filtered[filtered.apply(lambda row: row.astype(str).str.contains(word, case=False).any(), axis=1)]
+else:
+    filtered = df
 
     st.subheader("Search Results")
     st.write(f"{len(filtered)} images found")
