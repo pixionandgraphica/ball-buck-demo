@@ -35,7 +35,7 @@ if uploaded_file is not None:
     st.write(f"{len(filtered)} images found")
     st.dataframe(filtered)
 
-        if len(filtered) > 0:
+    if len(filtered) > 0:
         st.subheader("Image Preview")
         preview_rows = filtered.head(12)
 
