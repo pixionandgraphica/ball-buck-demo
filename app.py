@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import dropbox
+import io
 
 dbx = dropbox.Dropbox(st.secrets["DROPBOX_TOKEN"])
 
