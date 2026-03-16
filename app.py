@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import dropbox
 
+dbx = dropbox.Dropbox(st.secrets["DROPBOX_TOKEN"])
+
 st.title("Archive Intelligence Demo")
 
 st.write("Upload the metadata CSV generated from the image clustering pipeline.")
