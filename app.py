@@ -37,7 +37,7 @@ if uploaded_file is not None:
 
     if len(filtered) > 0:
         st.subheader("Image Preview")
-        preview_rows = filtered.head(6)
+        preview_rows = filtered.head(12)
 
         for _, row in preview_rows.iterrows():
             try:
