@@ -16,11 +16,13 @@ if uploaded_file is not None:
 
     search = st.text_input("Search images by keyword")
 
-    if search:
+if search:
     keywords = search.split()
     filtered = df
     for word in keywords:
-        filtered = filtered[filtered.apply(lambda row: row.astype(str).str.contains(word, case=False).any(), axis=1)]
+        filtered = filtered[filtered.apply(
+            lambda row: row.astype(str).str.contains(word, case=False).any(), axis=1
+        )]
 else:
     filtered = df
 
